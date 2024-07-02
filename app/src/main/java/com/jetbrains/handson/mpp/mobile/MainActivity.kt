@@ -11,7 +11,6 @@ import android.widget.Button
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.departSelector
 
 
 class MainActivity : AppCompatActivity(), ApplicationContract.View {
@@ -66,15 +65,13 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
         findViewById<Button>(R.id.submitButton)
             .setOnClickListener {
                 if(departStation == null || arrivalStation == null) {
-                    val builder = AlertDialog.Builder(this)
-                    builder.setTitle("Error")
-                    builder.setMessage("Please select your departure and arrival station.")
-                    builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-                        Toast.makeText(applicationContext,
-                            android.R.string.yes, Toast.LENGTH_SHORT).show()
+                    AlertDialog.Builder(this).apply {
+                        setTitle("Error")
+                        setMessage("Please select your departure and arrival stations.")
+                        setPositiveButton(android.R.string.yes){ dialog, which ->
+                            Toast.makeText(applicationContext, android.R.string.yes, Toast.LENGTH_SHORT).show()
+                        }
                     }
-
-                    builder.show()
                 }
                 val browserIntent = Intent(Intent.ACTION_VIEW,
                     Uri.parse(stationsHelper.getUrl(departStation!!, arrivalStation!!)))
