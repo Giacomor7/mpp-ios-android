@@ -9,5 +9,8 @@ class StationsHelper {
         Station("Leeds", "LDS")
     )
 
+    fun getUrl(departStation: Station, arrivalStation: Station): String {
+        return "https://www.lner.co.uk/travel-information/travelling-now/live-train-times/depart/${departStation.code}/${arrivalStation.code}/#LiveDepResults"
+    }
 
 }

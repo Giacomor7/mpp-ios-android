@@ -1,12 +1,18 @@
 package com.jetbrains.handson.mpp.mobile
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
+import android.view.View
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.Button
 import android.widget.Spinner
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.departSelector
+
 
 class MainActivity : AppCompatActivity(), ApplicationContract.View {
 
@@ -27,14 +33,53 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
         populateSpinner(R.id.departSelector, stations)
         populateSpinner(R.id.arrivalSelector, stations)
 
+        findViewById<Spinner>(R.id.departSelector).setOnItemSelectedListener(object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View?,
+                position: Int,
+                id: Long
+            ) {
+                departStation = stations[position]
+                println(departStation)
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+                // your code here
+            }
+        })
+
+        findViewById<Spinner>(R.id.arrivalSelector).setOnItemSelectedListener(object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View?,
+                position: Int,
+                id: Long
+            ) {
+                arrivalStation = stations[position]
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+                // your code here
+            }
+        })
+
         findViewById<Button>(R.id.submitButton)
             .setOnClickListener {
-//                val browserIntent = Intent(Intent.ACTION_VIEW,
-//                    Uri.parse(stationsHelper.getURL()))
+                if(departStation == null || arrivalStation == null) {
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("Androidly Alert")
+                    builder.setMessage("We have a message")
+                    builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+                        Toast.makeText(applicationContext,
+                            android.R.string.yes, Toast.LENGTH_SHORT).show()
+                    }
+
+                    builder.show()
+                }
                 val browserIntent = Intent(Intent.ACTION_VIEW,
-                    Uri.parse("http://www.google.com"))
+                    Uri.parse(stationsHelper.getUrl(departStation!!, arrivalStation!!)))
                 startActivity(browserIntent)
-                // TODO: error if either station is null
             }
     }
 
