@@ -14,8 +14,5 @@ class ApplicationPresenter: ApplicationContract.Presenter() {
 
     override fun onViewTaken(view: ApplicationContract.View) {
         this.view = view
-
-        val stations = Stations().stations
-
     }
 }

@@ -1,6 +1,6 @@
 package com.jetbrains.handson.mpp.mobile
 
-class Stations {
+class StationsHelper {
     public val stations = arrayOf<Station>(
         Station("London Kings Cross", "KGX"),
         Station("Edinburgh Waverley", "EDB"),
@@ -8,4 +8,6 @@ class Stations {
         Station("York", "YRK"),
         Station("Leeds", "LDS")
     )
+
+
 }
