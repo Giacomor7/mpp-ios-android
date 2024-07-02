@@ -9,7 +9,7 @@
     <Spinner
         android:id="@+id/departSelector"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:padding="16dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,13 +18,13 @@
     <Spinner
         android:id="@+id/arrivalSelector"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:padding="16dp"
         app:layout_constraintStart_toEndOf="@+id/departSelector"
         tools:layout_editor_absoluteY="16dp"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp" />
 
     <Button
         android:id="@+id/submitButton"
