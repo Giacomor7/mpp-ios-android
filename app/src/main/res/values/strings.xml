@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">KotlinMPP</string>
+    <string name="submit_button_text">Submit</string>
 </resources>
