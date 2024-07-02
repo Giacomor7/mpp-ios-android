@@ -67,8 +67,8 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
             .setOnClickListener {
                 if(departStation == null || arrivalStation == null) {
                     val builder = AlertDialog.Builder(this)
-                    builder.setTitle("Androidly Alert")
-                    builder.setMessage("We have a message")
+                    builder.setTitle("Error")
+                    builder.setMessage("Please select your departure and arrival station.")
                     builder.setPositiveButton(android.R.string.yes) { dialog, which ->
                         Toast.makeText(applicationContext,
                             android.R.string.yes, Toast.LENGTH_SHORT).show()
