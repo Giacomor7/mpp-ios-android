@@ -91,6 +91,4 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
     override fun setLabel(text: String) {
 
     }
-
-
 }

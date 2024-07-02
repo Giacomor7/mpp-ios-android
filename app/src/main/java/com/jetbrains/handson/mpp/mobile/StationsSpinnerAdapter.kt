@@ -23,7 +23,6 @@ class StationsSpinnerAdapter(
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
-        // TODO: position can be nullable?
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
