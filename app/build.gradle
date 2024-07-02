@@ -9,6 +9,7 @@ android {
     defaultConfig {
         applicationId "com.jetbrains.handson.mpp.mobile"
         minSdkVersion 23
+        //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -27,6 +28,9 @@ android {
         resources {
             excludes += ['META-INF/ktor*', 'META-INF/kotlinx*']
         }
+    }
+    buildFeatures {
+        viewBinding = true
     }
     namespace 'com.jetbrains.handson.mpp.mobile'
 }

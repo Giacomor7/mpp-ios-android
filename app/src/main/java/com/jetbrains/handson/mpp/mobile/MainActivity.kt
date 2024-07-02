@@ -7,13 +7,15 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.Button
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.jetbrains.handson.mpp.mobile.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity(), ApplicationContract.View {
+
+    private lateinit var binding: ActivityMainBinding
 
     private var departStation: Station? = null
     private var arrivalStation: Station? = null
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
 
         val presenter = ApplicationPresenter()
         presenter.onViewTaken(this)
@@ -29,10 +32,10 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
 
         val stations = stationsHelper.stations
 
-        populateSpinner(R.id.departSelector, stations)
-        populateSpinner(R.id.arrivalSelector, stations)
+        populateSpinner(binding.departSelector, stations)
+        populateSpinner(binding.arrivalSelector, stations)
 
-        findViewById<Spinner>(R.id.departSelector).setOnItemSelectedListener(object : OnItemSelectedListener {
+        binding.departSelector.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(
                 parentView: AdapterView<*>?,
                 selectedItemView: View?,
@@ -45,9 +48,9 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
             override fun onNothingSelected(parentView: AdapterView<*>?) {
                 departStation = null
             }
-        })
+        }
 
-        findViewById<Spinner>(R.id.arrivalSelector).setOnItemSelectedListener(object : OnItemSelectedListener {
+        binding.arrivalSelector.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(
                 parentView: AdapterView<*>?,
                 selectedItemView: View?,
@@ -60,10 +63,9 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
             override fun onNothingSelected(parentView: AdapterView<*>?) {
                 arrivalStation = null
             }
-        })
+        }
 
-        findViewById<Button>(R.id.submitButton)
-            .setOnClickListener {
+        binding.submitButton.setOnClickListener {
                 if(departStation == null || arrivalStation == null) {
                     AlertDialog.Builder(this).apply {
                         setTitle("Error")
@@ -79,8 +81,8 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
             }
     }
 
-    private fun populateSpinner(id: Int, stations: Array<Station>) {
-        val spinner = findViewById<Spinner>(id)
+    private fun populateSpinner(spinner: Spinner, stations: Array<Station>) {
+
         val spinnerArrayAdapter = StationsSpinnerAdapter(this,
                 android.R.layout.simple_spinner_dropdown_item, stations)
         spinner.adapter = spinnerArrayAdapter
