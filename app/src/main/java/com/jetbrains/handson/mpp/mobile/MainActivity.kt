@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
                 id: Long
             ) {
                 departStation = stations[position]
-                println(departStation)
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
