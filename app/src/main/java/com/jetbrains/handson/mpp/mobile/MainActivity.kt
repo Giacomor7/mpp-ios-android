@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
-                // your code here
+
             }
         })
 
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
-                // your code here
+
             }
         })
 
