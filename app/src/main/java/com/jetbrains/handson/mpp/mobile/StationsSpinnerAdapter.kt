@@ -9,7 +9,7 @@ import android.widget.TextView
 
 
 class StationsSpinnerAdapter(
-    private val context: Context, textViewResourceId: Int,
+    context: Context, textViewResourceId: Int,
     private val stations: Array<Station>
 ) : ArrayAdapter<Station>(context, textViewResourceId, stations) {
 
@@ -28,10 +28,11 @@ class StationsSpinnerAdapter(
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val label = super.getView(position, convertView, parent) as TextView
-        label.setTextColor(Color.BLACK)
-        label.text = stations[position].name
 
-        return label
+        return label.apply {
+            setTextColor(Color.BLACK)
+            text = stations[position].name
+        }
     }
 
     override fun getDropDownView(
