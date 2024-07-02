@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
-
+                departStation = null
             }
         })
 
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
-
+                arrivalStation = null
             }
         })
 
