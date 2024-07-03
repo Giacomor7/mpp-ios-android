@@ -1,8 +1,6 @@
 package com.jetbrains.handson.mpp.mobile
 
 import android.app.AlertDialog
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -10,9 +8,9 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.coroutines.launch
 import com.jetbrains.handson.mpp.mobile.databinding.ActivityMainBinding
-import kotlin.coroutines.CoroutineContext
+import java.text.SimpleDateFormat
+import java.util.Date
 
 
 class MainActivity : AppCompatActivity(), ApplicationContract.View {
@@ -31,7 +29,7 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
         val presenter = ApplicationPresenter()
         presenter.onViewTaken(this)
 
-        val stationsHelper = StationsHelper()
+        val stationsHelper = StationsHelper(BuildConfig.LNER_API_KEY)
 
         val stations = stationsHelper.stations
 
@@ -78,11 +76,11 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
                         }
                     }
                 }
-            // TODO: remove comment
-//                val browserIntent = Intent(Intent.ACTION_VIEW,
-//                    Uri.parse(stationsHelper.getUrl(departStation!!, arrivalStation!!)))
-//                startActivity(browserIntent)
-            val liveInfo = presenter.sendInfoRequest()
+
+            val requiredFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+            val currentTime = requiredFormat.format(Date())
+
+            val liveInfo = presenter.sendInfoRequest(BuildConfig.LNER_API_KEY, departStation!!, arrivalStation!!, currentTime)
             }
     }
 

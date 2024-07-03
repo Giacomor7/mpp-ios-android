@@ -16,9 +16,9 @@ class ApplicationPresenter: ApplicationContract.Presenter() {
         this.view = view
     }
 
-    fun sendInfoRequest() {
+    fun sendInfoRequest(apiKey: String, departStation: Station, arrivalStation: Station, currentTime: String) {
         launch(coroutineContext) {
-            StationsHelper().getLiveInfo()
+            StationsHelper(apiKey).getLiveInfo(departStation, arrivalStation, currentTime)
         }
     }
 }
