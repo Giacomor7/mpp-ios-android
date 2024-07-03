@@ -10,7 +10,9 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.launch
 import com.jetbrains.handson.mpp.mobile.databinding.ActivityMainBinding
+import kotlin.coroutines.CoroutineContext
 
 
 class MainActivity : AppCompatActivity(), ApplicationContract.View {
@@ -76,9 +78,11 @@ class MainActivity : AppCompatActivity(), ApplicationContract.View {
                         }
                     }
                 }
-                val browserIntent = Intent(Intent.ACTION_VIEW,
-                    Uri.parse(stationsHelper.getUrl(departStation!!, arrivalStation!!)))
-                startActivity(browserIntent)
+            // TODO: remove comment
+//                val browserIntent = Intent(Intent.ACTION_VIEW,
+//                    Uri.parse(stationsHelper.getUrl(departStation!!, arrivalStation!!)))
+//                startActivity(browserIntent)
+            val liveInfo = presenter.sendInfoRequest()
             }
     }
 

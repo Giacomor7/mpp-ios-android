@@ -15,4 +15,10 @@ class ApplicationPresenter: ApplicationContract.Presenter() {
     override fun onViewTaken(view: ApplicationContract.View) {
         this.view = view
     }
+
+    fun sendInfoRequest() {
+        launch(coroutineContext) {
+            StationsHelper().getLiveInfo()
+        }
+    }
 }
